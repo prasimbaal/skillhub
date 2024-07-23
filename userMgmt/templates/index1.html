@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Platform</title>
+    <link href=" {% static 'css/styles.css' %}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/jit@0.1.18/dist/tailwind-jit-cdn.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow">
+        <div class="container mx-auto px-4 py-8 flex justify-between items-center">
+            <a href="#" id="logo" class="flex items-center">
+                <img src="{% static 'img/zsec_logo.jpg' %}" class="w-24 h-16 object-contain" alt="Logo">
+            </a>
+            <div class="block md:hidden">
+                <button id="nav-toggle" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="login" class="text-gray-800">Login</a>
+                <a href="registration" class="text-gray-800">Register</a>
+                <a href="courses.html" class="text-gray-800">Courses</a>
+                <a href="profile.html">
+                <img src="{% static 'img/ertaale.jpg' %}" alt="Your Profile" class="w-10 h-11 rounded-full">
+                </a>
+            </div>
+        </div>
+        <div id="nav-content" class="hidden md:hidden">
+            <a href="login" class="block text-gray-800 py-2">Login</a>
+            <a href="registration" class="block text-gray-800 py-2">Register</a>
+            <a href="courses.html" class="block text-gray-800 py-2">Courses</a>
+            <a href="profile.html" class="block text-gray-800 py-2">Profile</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+
+        <!-- Main Section -->
+        <main class="col-span-3">
+            <!-- Courses -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Our Courses</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-xl font-semibold text-gray-800">Course 1</h3>
+                        <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-xl font-semibold text-gray-800">Course 2</h3>
+                        <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-xl font-semibold text-gray-800">Course 3</h3>
+                        <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-xl font-semibold text-gray-800">Course 4</h3>
+                        <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Updates -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">News Updates</h2>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-gray-800">Latest News</h3>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="col-span-1">
+            <!-- Ads -->
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Advertisements</h2>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-gray-800">Ad Space</h3>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+                </div>
+            </div>
+
+            <!-- Company News -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Company News</h2>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-semibold text-gray-800">News Update</h3>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow mt-6">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-gray-600 text-center">&copy; 2024 E-Learning Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navbar Toggle -->
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            var navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
