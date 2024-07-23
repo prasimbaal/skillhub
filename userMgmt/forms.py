@@ -17,7 +17,7 @@ class SignupForm(ModelForm):
     
     
     password = forms.CharField(widget=forms.PasswordInput())
-    fullname = forms.CharField(max_length=70, required=True)
+    # fullname = forms.CharField(max_length=70, required=True)
     username = forms.CharField(max_length=20, required=True)
     email = forms.EmailField()
     sex = forms.CharField(widget=forms.Select(choices=sex_choices))

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 # import uuid
 # Create your models here.
@@ -23,7 +23,7 @@ class User(models.Model):
     # user_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     username = models.CharField(max_length=20)
     email = models.EmailField(max_length=40)
-    password = models.CharField(max_length=33, blank=False,)
+    password = models.CharField(max_length=3300, blank=False,)
     profileImage = models.ImageField(upload_to='pfp_imgs', null=True,blank=True)
     sex = models.CharField(max_length=10, choices=sex_choices, null=True, default='male')
     user_type = models.CharField(max_length=10, choices=role_choices, null=False, default="Student")
@@ -34,7 +34,7 @@ class User(models.Model):
         ordering = ['-created_at']
 
     def __str__(self): 
-        return self.user.username
+        return self.username
 
 class Course(models.Model):
     name = models.CharField(max_length=200, null=True)
