@@ -99,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'skillhubDB',
         'USER': 'root',
-        'PASSWORD': 'yourpassword',
+        'PASSWORD': 'beal4442',
         'HOST': 'localhost',
         'PORT': '3306', #default
     }
