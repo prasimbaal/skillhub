@@ -1,7 +1,9 @@
 import React from "react";
-import heroImg from "../components/assets/images/hero.png"
+import backgroundImage from "../components/assets/images/bgi.png"
+import heroImg from "../components/assets/images/hero3.png"
 import heroImgback from "../components/assets/images/hero-shape-purple.png"
 import { FiSearch} from "react-icons/fi"
+import { Link } from "react-router-dom";
 import {BsFillLightningChargeFill} from "react-icons/bs"
 import {FaBookReader, FaGraduationCap, FaUsers} from "react-icons/fa"
 import About from "./About"
@@ -27,11 +29,11 @@ const Home = () =>{
 export const HomeContent =() =>{
     return(
         <>
-    <section className="bg-cyan-200 py-10 h-[92vh] md:h-full ">
-        <div className="container" >
+    <section className="bg-cover py-10 h-[60vh] md:h-full" style={{backgroundImage:`url(${backgroundImage})` }} >
+        <div className="container mx-auto px-4 h-full" >
             <div className="flex items-center justify-center md:flex-col">
-                <div className="left w-1/2 text-black md:w-full">
-                  <h1 className="text-4xl leading-tight text-black font-semibold">Lunch your <br/>own online learing
+                <div className="left w-1/2  text-black md:w-full">
+                  <h1 className="text-4xl leading-tight text-black font-semibold">Welcome <br/>to SkillHub
                   </h1>
                   <h3 className="text-lg mt-3">unlimited access to all 15+courses</h3>
                   <span className="text-[14px]">2 passes (with access to all classes) for 5$</span>
@@ -44,14 +46,20 @@ export const HomeContent =() =>{
                             <FiSearch/>
                         </button>
                     </span>
+
                 </div>
                 <span className="text-[14px]">your guarenteed to find something thats right for you</span>
+                <div className="mt-4">
+                                <Link to="/signup" className="bg-blue-700 text-white py-2 px-4 rounded">
+                                    Sign Up Here
+                                </Link>
+                </div>
             </div>
             <div className="right w-1/2 md:w-full relative">
               <div className="images relative">
-                <img src={heroImgback} alt="" className="absolute top-32 left-10 w-96 md:left-10"/>
+                <img src={heroImgback} alt="" className="absolute top-22 left-10 w-96 md:left-40"/>
                 <div className="img h-[85vh] w-full">
-                    <img src={heroImg} alt="" className="h-full w-full object-contain z-20 relative"/>
+                    <img src={heroImg} alt="" className="h-full w-full top-0 object-contain z-20 relative"/>
                 </div>
               </div>
               <div className="content">

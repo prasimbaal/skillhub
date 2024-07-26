@@ -66,7 +66,7 @@ const Header = () => {
         <header className="bg-white py-4 text-black sticky z-50 shadow-md top-0 left-0 w-full">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="logo flex items-center gap-6">
-                    <img src={logoImg} alt="alt" className="h-28" />
+                    <img src={logoImg} alt="alt"  className="h-28 w-49" />
                     <CategoryDropdown/>
                     
                 </div>

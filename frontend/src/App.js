@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Courses from "./pages/Courses";
 import Instructor from "./pages/Instructor";
+import LoginPage from "./pages/LoginPage";
 import BlogSinglePage from "./components/common/BlogSinglePage";
 
 const App = () => {
@@ -64,6 +65,10 @@ const App = () => {
                 <BlogSinglePage/>
                 </Layout>
               }
+              />
+              <Route
+          path="/login"
+          element={<LoginPage/>}
               />
 
         </Routes>
