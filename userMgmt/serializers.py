@@ -1,51 +1,60 @@
 from rest_framework import serializers
 from .models import *
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.hashers import make_password
-UserModel = User
-sex_choices = [
-        ('male', 'Male'),
-        ('female', 'Female'),
-    ]
+from rest_framework.validators import UniqueValidator
+from django.contrib.auth.password_validation import validate_password
 
-role_choices = [
-        ('student', 'Student'),
-        ('instructor', 'Instructor'),
-    ]
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+
+UserModel = get_user_model()
+
 
 class UserRegisterSerializer(serializers.ModelSerializer):
 
+    email = serializers.EmailField(
+      required=True,) 
+    password = serializers.CharField(
+        write_only=True, required=True, validators=[validate_password])
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password', 'user_type', 'sex']
-
-    def create_user(self, validated_data):
-        password = make_password(validated_data.pop('password'))  #plaintext password removed from dictionary
-        user = User.create_user(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            password=password,
-            user_type=validated_data['user_type'], 
-            sex=validated_data['sex']   
-        )
-        return user
+        model = UserModel
+        fields = ('username', 'password','email','user_type', 'sex')
+     
+    
+    def create_user(self, data):
+        password = make_password(data.pop('password'), hasher='bcrypt')  #plaintext password removed from dictionary
+        user_obj = UserModel.objects.create_user(username = data['username'], email=data['email'], user_type = data['user_type'], sex = data['sex'], password=password)
+        user_obj.save()
+        
+        return user_obj
 
     
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
-    password = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        user = authenticate(
-            username=data['username'],
-            password=make_password(data['password'])
-        )
-        if user:
-            return user
-        raise serializers.ValidationError("Incorrect Credentials")
+        username = data.get('username')
+        password = make_password( data.get('password'), hasher='bcrypt')
+
+        if not username or not password:
+            raise serializers.ValidationError("Must include 'username' and 'password'")
+
+        # Check if user exists
+        if not AppUser.objects.filter(username=username).exists():
+            raise serializers.ValidationError("User with this username does not exist")
+
+        # Authenticate the user
+        user = authenticate(username=username, password=password)
+        
+        if user is None:
+            raise serializers.ValidationError(f"Incorrect credentials{username} {password}")
+
+        return user
+
+    
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = "__all__"

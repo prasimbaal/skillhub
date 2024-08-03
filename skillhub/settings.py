@@ -33,7 +33,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['.skillhub.et','']
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
+    'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
 
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'skillhub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'skillhubDB',
+        'NAME': 'skillupDB',
         'USER': 'root',
         'PASSWORD': 'beal4442',
         'HOST': 'localhost',
@@ -106,8 +106,8 @@ DATABASES = {
 }
 
 ##User Model
+AUTH_USER_MODEL = 'userMgmt.AppUser'
 
-AUTH_USER_MODEL = 'userMgmt.User'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES' :('rest_framework.permissions.IsAuthenticated', ),
     'DEFAULT_AUTHENTICATION_CLASSES' :('rest_framework.authentication.SessionAuthentication', ), 
@@ -116,8 +116,9 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 PASSWORD_HASHERS = [
+   
     # 'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    # 'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',

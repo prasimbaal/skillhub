@@ -16,15 +16,15 @@ from rest_framework import status, permissions
 
 ###########################api views ##############################
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 class UserRegisterView(APIView):
     permission_classes = (permissions.AllowAny,)
     
-    def post(self, request, format=None):
+    def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.create_user(data=request.data)
             if user:
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
@@ -36,7 +36,9 @@ class UserLoginView(APIView):
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
+            user = serializer.validate(data=request.data)
             json = serializer.data
+            login(request, user)
             return Response(json, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
