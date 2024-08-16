@@ -98,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'skillupDB',
-        'USER': 'root',
-        'PASSWORD': 'beal4442',
+        'USER': 'root',   #mysql server username
+        'PASSWORD': '',  #your password for mysql server here  
         'HOST': 'localhost',
         'PORT': '3306', #default
     }
@@ -118,7 +118,7 @@ REST_FRAMEWORK = {
 PASSWORD_HASHERS = [
    
     # 'django.contrib.auth.hashers.Argon2PasswordHasher',
-    # 'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
