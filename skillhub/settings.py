@@ -99,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'skillupDB',
         'USER': 'root',   #mysql server username
-        'PASSWORD': '',  #your password for mysql server here  
+        'PASSWORD': 'beal4442',  #your password for mysql server here  
         'HOST': 'localhost',
         'PORT': '3306', #default
     }
