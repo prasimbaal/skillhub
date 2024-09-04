@@ -18,13 +18,13 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         write_only=True, required=True, validators=[validate_password])
     class Meta:
         model = UserModel
-        fields = ('username', 'password','email','user_type', 'sex')
+        fields = ('username', 'password','email', 'sex')
      
     
     def create_user(self, data):
         password = make_password(data['password'])  #plaintext password removed from dictionary
         print(password)
-        user_obj = UserModel.objects.create_user(username = data['username'], email=data['email'], user_type = data['user_type'], sex = data['sex'], password=password)
+        user_obj = UserModel.objects.create_user(username = data['username'], email=data['email'],sex = data['sex'], password=password)
         user_obj.save()
         
         return user_obj
@@ -38,11 +38,11 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get('username')
         passwd = data.get('password')
-        password = make_password(passwd)
-        print(password, passwd)
+        # password = make_password(passwd)
+        # print(password, passwd)
         # password = passwd
 
-        if not username or not password:
+        if not username or not passwd:
             raise serializers.ValidationError("Must include 'username' and 'password'")
 
         # Check if user exists

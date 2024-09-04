@@ -5,8 +5,8 @@ from django.contrib.auth.hashers import make_password
 
 class AppUserManager(BaseUserManager):
 
-    def create_user(self, username, email, user_type, sex, password):
-        if not email:
+    def create_user(self, username, email, sex, password):
+        if not username:
             raise ValueError('Users must have an email address')
         if not password:
             raise ValueError('Users must have a password')
@@ -18,7 +18,6 @@ class AppUserManager(BaseUserManager):
             email=self.normalize_email(email),
             # user.set_password(password),
             password=password,
-            user_type=user_type,
             sex=sex 
         )
         print(password)
@@ -26,7 +25,7 @@ class AppUserManager(BaseUserManager):
         # password = make_password(password)
         return user
 
-    def create_superuser(self, username, email, user_type ,sex, password=None): 
+    def create_superuser(self, username, email, sex, password=None): 
         # self.sex = "male"
         user = self.create_user(
             username,email,
@@ -43,12 +42,6 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         ('female', 'Female'),
     ]
 
-    role_choices = [
-        ('student', 'Student'),
-        ('instructor', 'Instructor'),
-        ('admin', 'Admin'),
-    ]
-
     
     u_id = models.BigAutoField(primary_key=True,editable=False)
     # user_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -57,11 +50,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=3300, blank=False,)
     profileImage = models.ImageField(upload_to='pfp_imgs', null=True,blank=True)
     sex = models.CharField(max_length=10, choices=sex_choices, default='male')
-    user_type = models.CharField(max_length=10, choices=role_choices, null=False, default="Student")
+    # user_type = models.CharField(max_length=10, choices=role_choices, null=False, default="Student")
     created_at = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'user_type', 'sex']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'sex']
     
     def is_staff(self):
         return self.is_admin

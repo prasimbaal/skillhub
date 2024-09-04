@@ -6,10 +6,10 @@ from . import views
 urlpatterns = [
     path("",views.index, name='index'),
     # path("register/", views.reg, name='reg'),
-    path("login/", views.UserLoginView.as_view(), name='login'),
-    path("registration/", views.UserRegisterView.as_view(), name="register"),
-    path("logout/",views.logoutView.as_view(), name = "logout"),
-    path("profile/", views.profileView.as_view(), name="profile"),
+    path("api/login/", views.UserLoginView.as_view(), name='login'),
+    path("api/registration/", views.UserRegisterView.as_view(), name="register"),
+    path("api/logout/",views.logoutView.as_view(), name = "logout"),
+    path("api/profile/", views.profileView.as_view(), name="profile"),
     # path('api/registraion/', views.profile.as_view())
 
 ]

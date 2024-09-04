@@ -1,6 +1,6 @@
 import React from "react";
-//import { useState,useEffect } from "react";
-//nimport axios from 'axios';
+// import { useState,useEffect } from "react";
+//import axios from 'axios';
 import './index.css';
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import Layout from "./components/common/Layout";
