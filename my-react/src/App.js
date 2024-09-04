@@ -1,8 +1,6 @@
-import React from "react";
-//import { useState,useEffect } from "react";
-//nimport axios from 'axios';
+import React, { useState } from "react";
 import './index.css';
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/common/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,87 +13,93 @@ import Team from "./pages/Team";
 import BlogSinglePage from "./components/common/BlogSinglePage";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track if the user is logged in
+
+  const handleLogin = () => {
+    setIsLoggedIn(true); // Update state when user logs in
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Update state when user logs out
+  };
+
   return (
     <>
-
-     <Router>
+      <Router>
         <Routes>
-          <Route 
-          path="/" 
-          element = {
-              <Layout>
-                <Home/>
-                </Layout>
-              }
-              />
-              <Route 
-          path="/about" 
-          element = {
-              <Layout>
-                <About/>
-                </Layout>
-              }
-              />
-              <Route 
-          path="/blog" 
-          element = {
-              <Layout>
-                <Blog/>
-                </Layout>
-              }
-              />
-              <Route 
-          path="/courses" 
-          element = {
-              <Layout>
-                <Courses/>
-                </Layout>
-              }
-              />
-              <Route 
-          path="/services" 
-          element = {
-              <Layout>
-                <Services/>
-                </Layout>
-              }
-              />
-        
-              
-              <Route 
-          path="/single-page" 
-          element = {
-              <Layout>
-                <BlogSinglePage/>
-                </Layout>
-              }
-              />
-              <Route
-          path="/login"
-          element={<LoginPage/>}
-              />
-              <Route 
-          path="/contact" 
-          element = {
-              <Layout>
-                <Contact/>
-                </Layout>
-              }
-              />
-              <Route 
-          path="/team" 
-          element = {
-              <Layout>
-                <Team/>
-                </Layout>
-              }
-              />
-
-
+          <Route
+            path="/"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <About />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Blog />
+              </Layout>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Courses />
+              </Layout>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Services />
+              </Layout>
+            }
+          />
+          <Route
+            path="/single-page"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <BlogSinglePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={<LoginPage onLogin={handleLogin} />} // Pass the login handler to the LoginPage
+          />
+          <Route
+            path="/contact"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Contact />
+              </Layout>
+            }
+          />
+          <Route
+            path="/team"
+            element={
+              <Layout isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+                <Team />
+              </Layout>
+            }
+          />
         </Routes>
-     </Router>
-     </>
+      </Router>
+    </>
   );
 };
 
 export default App;
+
