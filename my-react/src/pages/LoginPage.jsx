@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
+
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
+
+const client = axios.create({
+  baseURL: 'localhost:8000',
+})
+
+
 const LoginPage = ({ onLogin }) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [sex, setSex] = useState('');
 
   const handleLogin = async () => {
     try {
       // Send login request to the backend
-      const response = await axios.post('/api/login', {
+      const response = await axios.post('http://localhost:8000/api/login', {
         username,
         password,
       });
@@ -31,10 +44,11 @@ const LoginPage = ({ onLogin }) => {
   const handleRegister = async () => {
     try {
       // Send registration request to the backend
-      const response = await axios.post('/api/register', {
+      const response = await axios.post('http://localhost:8000/api/registration', {
         username,
         email,
         password,
+        // sex,
       });
       
       if (response.data.success) {
