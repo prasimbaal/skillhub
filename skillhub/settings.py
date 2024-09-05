@@ -32,11 +32,6 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['.skillhub.et','']
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-]
-
 CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
@@ -62,6 +57,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
+
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -99,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'skillupDB',
         'USER': 'root',   #mysql server username
-        'PASSWORD': '',  #your password for mysql server here  
+        'PASSWORD': 'beal4442',  #your password for mysql server here  
         'HOST': 'localhost',
         'PORT': '3306', #default
     }
