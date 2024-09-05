@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 class AppUserManager(BaseUserManager):
 
-    def create_user(self, username, email, sex, password):
+    def create_user(self, username, email, password):
         if not username:
             raise ValueError('Users must have an email address')
         if not password:
@@ -18,14 +18,14 @@ class AppUserManager(BaseUserManager):
             email=self.normalize_email(email),
             # user.set_password(password),
             password=password,
-            sex=sex 
+            # sex=sex
         )
         print(password)
         user.save()
         # password = make_password(password)
         return user
 
-    def create_superuser(self, username, email, sex, password=None): 
+    def create_superuser(self, username, email, password=None): 
         # self.sex = "male"
         user = self.create_user(
             username,email,
@@ -37,10 +37,10 @@ class AppUserManager(BaseUserManager):
         return user
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
-    sex_choices = [
-        ('male', 'Male'),
-        ('female', 'Female'),
-    ]
+    # sex_choices = [
+    #     ('male', 'Male'),
+    #     ('female', 'Female'),
+    # ]
 
     
     u_id = models.BigAutoField(primary_key=True,editable=False)
@@ -49,7 +49,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=40, unique=True)
     password = models.CharField(max_length=3300, blank=False,)
     profileImage = models.ImageField(upload_to='pfp_imgs', null=True,blank=True)
-    sex = models.CharField(max_length=10, choices=sex_choices, default='male')
+    # sex = models.CharField(max_length=10, choices=sex_choices, default='male')
     # user_type = models.CharField(max_length=10, choices=role_choices, null=False, default="Student")
     created_at = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)

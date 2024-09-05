@@ -18,13 +18,13 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         write_only=True, required=True, validators=[validate_password])
     class Meta:
         model = UserModel
-        fields = ('username', 'password','email', 'sex')
+        fields = ('username', 'password','email')
      
     
     def create_user(self, data):
         password = make_password(data['password'])  #plaintext password removed from dictionary
         print(password)
-        user_obj = UserModel.objects.create_user(username = data['username'], email=data['email'],sex = data['sex'], password=password)
+        user_obj = UserModel.objects.create_user(username = data['username'], email=data['email'], password=password)
         user_obj.save()
         
         return user_obj

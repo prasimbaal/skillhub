@@ -17,7 +17,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    client.get("/api/user")
+    client.get("/api/profile/")
     .then(function(res) {
       setCurrentUser(true);
     })
@@ -33,7 +33,7 @@ function LoginPage() {
   function submitRegistration(e) {
     e.preventDefault();
     client.post(
-      "/api/register",
+      "/api/registration/",
       {
         email: email,
         username: username,
@@ -41,7 +41,7 @@ function LoginPage() {
       }
     ).then(function(res) {
       client.post(
-        "/api/login",
+        "/api/login/",
         {
           email: email,
           password: password
@@ -55,9 +55,9 @@ function LoginPage() {
   function submitLogin(e) {
     e.preventDefault();
     client.post(
-      "/api/login",
+      "/api/login/",
       {
-        email: email,
+        username: username,
         password: password
       }
     ).then(function(res) {
@@ -68,7 +68,7 @@ function LoginPage() {
   function submitLogout(e) {
     e.preventDefault();
     client.post(
-      "/api/logout",
+      "/api/logout/",
       { withCredentials: true }
     ).then(function(res) {
       setCurrentUser(false);
@@ -151,13 +151,13 @@ function LoginPage() {
           <form onSubmit={submitLogin} className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
             <h2 className="text-2xl font-bold mb-4">Log in</h2>
             <div className="mb-4">
-              <label className="block text-gray-700">Email address</label>
+              <label className="block text-gray-700">Username</label>
               <input 
-                type="email" 
+                type="text" 
                 className="w-full p-2 border border-gray-300 rounded mt-1" 
-                placeholder="Enter email" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)} 
+                placeholder="Enter username" 
+                value={username} 
+                onChange={e => setUsername(e.target.value)} 
               />
             </div>
             <div className="mb-4">
